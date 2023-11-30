@@ -20,3 +20,14 @@ $sql = "INSERT INTO Persoon (Voornaam
                             ,'{$_POST['password']}')";
 
 echo $sql;
+
+/**
+ * Prepareer de sql-query met de prepare-method van de PDO class
+ */
+$statement = $pdo->prepare($sql);
+
+/**
+ * Voer de query uit op de database
+ */
+$statement->execute()
+
