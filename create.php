@@ -1,30 +1,52 @@
 <?php
-
-var_dump($_POST);
-
+/**
+ * Voeg de inloggegevens toe aan de pagina create.php
+ * door het includen van config.php
+ */
 include('config/config.php');
 
+/**
+ * Maak een datasourcename string om mee te geven aan de 
+ * de constructor van de PDO-class
+ */
 $dsn = "mysql:host=$dbHost;
         dbname=$dbName;
         charset=UTF8";
 
+/**
+ * Maak een nieuw object van de PDO-class om verbinding te maken met de
+ * MySQL-database
+ */
 $pdo = new PDO($dsn, $dbUser, $dbPass);
 
+/**
+ * Het $_POST-array wordt schoongemaakt door een PHP-filter
+ */
+$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+/**
+ * Maak een insert-query om de gegevens uit het formulier weg te schrijven naar
+ * de database.
+ */
 $sql = "INSERT INTO Persoon (Voornaam
                             ,Tussenvoegsel
                             ,Achternaam
                             ,Wachtwoord)
-        VALUES              ('{$_POST['firstname']}'
+        VALUES              (:firstname
                             ,'{$_POST['infix']}'
                             ,'{$_POST['lastname']}'
                             ,'{$_POST['password']}')";
 
-echo $sql;
 
 /**
  * Prepareer de sql-query met de prepare-method van de PDO class
  */
 $statement = $pdo->prepare($sql);
+
+/**
+ * Verbind aan de placeholders de $_POST-waarden met de method bindValue()
+ */
+$statement->bindValue(':firstname', $_POST['firstname'], PDO::PARAM_STR);
 
 /**
  * Voer de query uit op de database
