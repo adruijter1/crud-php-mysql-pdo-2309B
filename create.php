@@ -31,11 +31,13 @@ $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $sql = "INSERT INTO Persoon (Voornaam
                             ,Tussenvoegsel
                             ,Achternaam
-                            ,Wachtwoord)
+                            ,Wachtwoord
+                            ,Leeftijd)
         VALUES              (:firstname
                             ,:infix
                             ,:lastname
-                            ,:password)";
+                            ,:password
+                            ,:age)";
 
 
 /**
@@ -50,9 +52,22 @@ $statement->bindValue(':firstname', $_POST['firstname'], PDO::PARAM_STR);
 $statement->bindValue(':infix', $_POST['infix'], PDO::PARAM_STR);
 $statement->bindValue(':lastname', $_POST['lastname'], PDO::PARAM_STR);
 $statement->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
+$statement->bindValue(':age', $_POST['age'], PDO::PARAM_INT);
 
 /**
  * Voer de query uit op de database
  */
 $statement->execute();
+
+/**
+ * Feedback voor de gebruikers dat het opslaan
+ * gelukt is.
+ */
+echo "De gegevens zijn opgeslagen in de database";
+
+/**
+ * De header() functie stuurt de gebruiker naar een andere pagina. In 
+ * dit geval na 3,5 seconden
+ */
+header('Refresh:3.5; url=index.php');
 
