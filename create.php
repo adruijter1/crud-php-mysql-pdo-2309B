@@ -29,5 +29,5 @@ $statement = $pdo->prepare($sql);
 /**
  * Voer de query uit op de database
  */
-$statement->execute()
+$statement->execute();
 
