@@ -48,6 +48,21 @@ $statement->execute();
  */
 $result = $statement->fetchAll(PDO::FETCH_OBJ);
 
+
+/**
+ * Het indexed-array $result met daarin objecten doorlopen we met een foreach-loop
+ */
+$tableRows = "";
+foreach ($result as $persoonObject) {
+    $tableRows .= "<tr>
+                        <td>$persoonObject->Voornaam</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +77,19 @@ $result = $statement->fetchAll(PDO::FETCH_OBJ);
 <body>
     <h3>Persoonsgegevens</h3>
 
-    
+    <!-- Maak een HTML tabel -->
+
+    <table>
+        <thead>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Wachtwoord</th>
+            <th>Leeftijd</th>
+        </thead>
+        <tbody>
+            <?php echo $tableRows; ?>
+        </tbody>
+    </table>
 </body>
 </html>
