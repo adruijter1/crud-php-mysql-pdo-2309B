@@ -56,10 +56,10 @@ $tableRows = "";
 foreach ($result as $persoonObject) {
     $tableRows .= "<tr>
                         <td>$persoonObject->Voornaam</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>$persoonObject->Tussenvoegsel</td>
+                        <td>$persoonObject->Achternaam</td>
+                        <td>$persoonObject->Wachtwoord</td>
+                        <td>$persoonObject->Leeftijd</td>
                     </tr>";
 }
 
