@@ -86,6 +86,7 @@ foreach ($result as $persoonObject) {
             <th>Achternaam</th>
             <th>Wachtwoord</th>
             <th>Leeftijd</th>
+            <th>Geboortedatum</th>
         </thead>
         <tbody>
             <?php echo $tableRows; ?>
