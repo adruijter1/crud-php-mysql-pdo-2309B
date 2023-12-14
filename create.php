@@ -31,13 +31,11 @@ $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $sql = "INSERT INTO Persoon (Voornaam
                             ,Tussenvoegsel
                             ,Achternaam
-                            ,Wachtwoord
-                            ,Leeftijd)
+                            ,Wachtwoord)
         VALUES              (:firstname
                             ,:infix
                             ,:lastname
-                            ,:password
-                            ,:age)";
+                            ,:password)";
 
 
 /**
@@ -52,8 +50,6 @@ $statement->bindValue(':firstname', $_POST['firstname'], PDO::PARAM_STR);
 $statement->bindValue(':infix', $_POST['infix'], PDO::PARAM_STR);
 $statement->bindValue(':lastname', $_POST['lastname'], PDO::PARAM_STR);
 $statement->bindValue(':password', $_POST['password'], PDO::PARAM_STR);
-$statement->bindValue(':age', $_POST['age'], PDO::PARAM_INT);
-
 /**
  * Voer de query uit op de database
  */

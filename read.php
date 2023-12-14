@@ -28,7 +28,6 @@ $sql = "SELECT Voornaam
               ,Tussenvoegsel
               ,Achternaam
               ,Wachtwoord
-              ,Leeftijd
         FROM  Persoon
         ORDER BY Achternaam ASC";
 
@@ -59,7 +58,6 @@ foreach ($result as $persoonObject) {
                         <td>$persoonObject->Tussenvoegsel</td>
                         <td>$persoonObject->Achternaam</td>
                         <td>$persoonObject->Wachtwoord</td>
-                        <td>$persoonObject->Leeftijd</td>
                     </tr>";
 }
 
@@ -85,8 +83,6 @@ foreach ($result as $persoonObject) {
             <th>Tussenvoegsel</th>
             <th>Achternaam</th>
             <th>Wachtwoord</th>
-            <th>Leeftijd</th>
-            <th>Geboortedatum</th>
         </thead>
         <tbody>
             <?php echo $tableRows; ?>
