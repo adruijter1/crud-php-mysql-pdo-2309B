@@ -23,7 +23,7 @@
      * Hier checken we of er al op de submit button van het formulier is geklikt
      */
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        var_dump($_POST);
+        // var_dump($_POST);
 
         /**
          * Maak een update query voor het updaten van alle records.
@@ -37,11 +37,11 @@
 
         $statement = $pdo->prepare($sql);
 
-        $statement->bindValue(':voornaam', $_POST['Voornaam'], PDO::PARAM_STR);
-        $statement->bindValue(':tussenvoegsel', $_POST['Tussenvoegsel'], PDO::PARAM_STR);
-        $statement->bindValue(':achternaam', $_POST['Achternaam'], PDO::PARAM_STR);
-        $statement->bindValue(':wachtwoord', $_POST['Wachtwoord'], PDO::PARAM_STR);
-        $statement->bindValue(':id', $_POST['Id'], PDO::PARAM_INT);
+        $statement->bindValue(':voornaam', $_POST['firstname'], PDO::PARAM_STR);
+        $statement->bindValue(':tussenvoegsel', $_POST['infix'], PDO::PARAM_STR);
+        $statement->bindValue(':achternaam', $_POST['lastname'], PDO::PARAM_STR);
+        $statement->bindValue(':wachtwoord', $_POST['password'], PDO::PARAM_STR);
+        $statement->bindValue(':id', $_POST['id'], PDO::PARAM_INT);
 
         $statement->execute();
 
@@ -86,7 +86,7 @@
     /**
      * We tonen het resultaat
      */
-    var_dump($result);
+    // var_dump($result);
 
 ?>
 
