@@ -24,7 +24,8 @@ $pdo = new PDO($dsn, $dbUser, $dbPass);
  * Maak een SELECT-query voor het opvragen van de data uit de databasetabel
  * Gebruik voor het sorteren ORDER BY voor oplopen (ASC) voor aflopend (DESC)
  */
-$sql = "SELECT Voornaam
+$sql = "SELECT Id
+              ,Voornaam
               ,Tussenvoegsel
               ,Achternaam
               ,Wachtwoord
@@ -58,6 +59,11 @@ foreach ($result as $persoonObject) {
                         <td>$persoonObject->Tussenvoegsel</td>
                         <td>$persoonObject->Achternaam</td>
                         <td>$persoonObject->Wachtwoord</td>
+                        <td>
+                           <a href='update.php?id=$persoonObject->Id'> 
+                                <img src='img/edit.png' alt='potlood'>
+                           </a>
+                        </td>
                     </tr>";
 }
 
@@ -83,6 +89,7 @@ foreach ($result as $persoonObject) {
             <th>Tussenvoegsel</th>
             <th>Achternaam</th>
             <th>Wachtwoord</th>
+            <th>Wijzigen</th>
         </thead>
         <tbody>
             <?php echo $tableRows; ?>
